@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector <int> a(n);
+    for (int i = 0; i < n; i++) { //создается массив из чисел до n
+        cin >> a[i];
+    }
+    reverse(a.begin(), a.end()); //разворачивает массив, т.е. выводит наоборот
+    sort(a.begin(), a.end()); //сортирует
+    for (auto now : a) {
+        cout << now << " "; //выводит
+    }
+    return 0;
+}
