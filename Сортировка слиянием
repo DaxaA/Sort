@@ -1,0 +1,45 @@
+void sort(int a[], int n);                 // любая сортировка одномерного массива
+
+ 
+
+void big_sort(int A[], int N){
+
+int max=A[0],i,j,n=sqrt(N)+1;
+
+int **B=new int*[n];
+
+            for (i=0; i<n; i++) B[i]=new int[n];
+
+            for (i=0; i<N; i++) {
+
+                        B[i/n][i%n]=A[i];
+
+                        if (A[i]>max) max=A[i];                           // Распределение
+
+                        }
+
+            for (j=n*n-N; j<n;j++)                                           // Заполнение "хвоста" последнего
+
+                        B[n-1][j]=max+1;
+
+            for (i=0; i<n; i++) sort(B[i],n);                               // Сортировка частей
+
+            for (i=0; i<N; i++){                                              // Слияние
+
+            for ( int k=0, j=0; j<n; j++)                                   // Индекс строки с минимальным
+
+                        if (B[j][0] < B[k][0]) k=j;                           // начальным B[k][0]
+
+            A[i] = B[k][0];                                                    // Перенос элемента
+
+            for (j=1; j<n; j++)
+
+                        B[k][j-1]=B[k][j];                                     // Сдвиг сливаемой строки
+
+            B[k][n-1]=max+1;                                               // Запись ограничителя
+
+            }
+
+for (i=0; i<n; i++) delete []B[i];
+
+delete []B;}
